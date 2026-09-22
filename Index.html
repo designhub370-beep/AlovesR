@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Videos</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .container {
+        width: 100%;
+        max-width: 900px;
+        background: #1c1c1c;
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 10px 40px rgba(0,0,0,.45);
+    }
+    h1 { text-align: center; margin-top: 0; }
+    .login { text-align: center; }
+    input {
+        width: 100%;
+        max-width: 420px;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #555;
+        background: #292929;
+        color: white;
+        font-size: 16px;
+        outline: none;
+    }
+    button {
+        margin-top: 12px;
+        padding: 13px 28px;
+        border: 0;
+        border-radius: 10px;
+        background: #fff;
+        color: #111;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    #error { color: #ff6b6b; min-height: 22px; }
+    #videos { display: none; }
+    .video-box {
+        margin-top: 24px;
+        background: #252525;
+        padding: 16px;
+        border-radius: 14px;
+    }
+    .video-box h2 { margin-top: 0; }
+    video {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        background: #000;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="login" class="login">
+        <h1>🔒 Private Videos</h1>
+        <p>Enter password to continue</p>
+        <input id="password" type="password" placeholder="Enter password">
+        <br>
+        <button onclick="unlock()">Unlock</button>
+        <p id="error"></p>
+    </div>
+
+    <div id="videos">
+        <h1>🎬 My Videos</h1>
+
+        <div class="video-box">
+            <h2>Video 1</h2>
+            <!-- Replace "video1.mp4" with your first video file name -->
+            <video controls preload="metadata">
+                <source src="video1.mp4" type="video/mp4">
+                Your browser does not support video playback.
+            </video>
+        </div>
+
+        <div class="video-box">
+            <h2>Video 2</h2>
+            <!-- Replace "video2.mp4" with your second video file name -->
+            <video controls preload="metadata">
+                <source src="video2.mp4" type="video/mp4">
+                Your browser does not support video playback.
+            </video>
+        </div>
+    </div>
+</div>
+
+<script>
+const correctPassword = "RlovesA₹₹₹123";
+
+function unlock() {
+    const entered = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (entered === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("videos").style.display = "block";
+    } else {
+        error.textContent = "Incorrect password.";
+    }
+}
+
+document.getElementById("password").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") unlock();
+});
+</script>
+
+</body>
+</html>
+
